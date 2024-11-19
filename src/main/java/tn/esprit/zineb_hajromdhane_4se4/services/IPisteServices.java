@@ -10,4 +10,6 @@ public interface IPisteServices {
     public List<Piste> retrieveAll();
     public void deletePiste(Long numPiste);
     public Piste updatePiste(Piste piste);
+
+    void assignSkierToPiste(Long numSkier, Long numPiste);
 }

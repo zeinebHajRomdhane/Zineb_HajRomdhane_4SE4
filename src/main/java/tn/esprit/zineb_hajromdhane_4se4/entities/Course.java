@@ -1,5 +1,6 @@
 package tn.esprit.zineb_hajromdhane_4se4.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -24,7 +25,7 @@ public class Course implements Serializable {
     private Support support;
     private float price;
     private int timeSlot;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     Set<Registration> registrations;
 }

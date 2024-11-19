@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.zineb_hajromdhane_4se4.entities.Course;
 import tn.esprit.zineb_hajromdhane_4se4.entities.Piste;
+import tn.esprit.zineb_hajromdhane_4se4.entities.Support;
 import tn.esprit.zineb_hajromdhane_4se4.repositories.ICourseRepository;
+import tn.esprit.zineb_hajromdhane_4se4.repositories.IInstructorRepository;
 import tn.esprit.zineb_hajromdhane_4se4.repositories.IPisteRepository;
 
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CourseServiceImpl implements ICourseServices{
     private ICourseRepository courseRepository;
+    private IInstructorRepository instructorRepository;
     @Override
     public Course addCourse(Course course) {
         return courseRepository.save(course);
@@ -38,4 +41,16 @@ public class CourseServiceImpl implements ICourseServices{
     public Course updateCourse(Course course) {
         return courseRepository.save(course);
     }
+
+    @Override
+    public Course assignInstructorToCourse(Long numCourse, Long numInstructor) {
+        return null;
+    }
+
+    @Override
+    public List<Course> retrieveBySupport(Support support) {
+        return courseRepository.findBySupport(support);
+    }
+
+
 }

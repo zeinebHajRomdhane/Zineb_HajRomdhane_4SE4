@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.zineb_hajromdhane_4se4.entities.Piste;
+import tn.esprit.zineb_hajromdhane_4se4.entities.Skier;
 import tn.esprit.zineb_hajromdhane_4se4.repositories.IPisteRepository;
+import tn.esprit.zineb_hajromdhane_4se4.repositories.ISkierRepository;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PisteServiceImpl implements IPisteServices{
     private IPisteRepository pisteRepository;
+    private ISkierRepository skierRepository;
     public Piste addPiste(Piste piste){
         return pisteRepository.save(piste);
     }
@@ -34,5 +37,13 @@ public class PisteServiceImpl implements IPisteServices{
     @Override
     public Piste updatePiste(Piste piste) {
         return pisteRepository.save(piste);
+    }
+
+    @Override
+    public void assignSkierToPiste(Long numSkier, Long numPiste) {
+        Skier skier= skierRepository.findById(numSkier).orElse(null);
+        Piste piste=pisteRepository.findById(numPiste).orElse(null);
+        piste.getSkiers().add(skier);
+        pisteRepository.save(piste);
     }
 }

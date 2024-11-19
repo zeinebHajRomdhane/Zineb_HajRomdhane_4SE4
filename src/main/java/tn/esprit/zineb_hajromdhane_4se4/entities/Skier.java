@@ -1,5 +1,6 @@
 package tn.esprit.zineb_hajromdhane_4se4.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,7 +31,7 @@ public class Skier implements Serializable {
     Subscription subscription;
 
     @OneToMany(mappedBy = "skier")
-    Set<Registration> registrations;
+    Set<Registration> registrations = new HashSet<>();
 
     @ManyToMany(mappedBy = "skiers" , fetch = FetchType.EAGER)
     Set<Piste> pistes;
